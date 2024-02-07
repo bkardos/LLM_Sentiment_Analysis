@@ -1,0 +1,49 @@
+import java.util.Scanner;
+
+public class SentimentAnalyzer {
+    public static void main(String[] args) {
+        // Create a Scanner object to read user input
+        Scanner scanner = new Scanner(System.in);
+
+        // Prompt the user to enter a string
+        System.out.print("Enter a string: ");
+        String input = scanner.nextLine();
+
+        // Close the scanner to prevent resource leak
+        scanner.close();
+
+        // Convert the input string to lowercase for case-insensitive matching
+        String lowercaseInput = input.toLowerCase();
+
+        // Check for positive, negative, or neutral sentiment based on keywords
+        if (containsPositiveKeywords(lowercaseInput)) {
+            System.out.println("Sentiment: Positive");
+        } else if (containsNegativeKeywords(lowercaseInput)) {
+            System.out.println("Sentiment: Negative");
+        } else {
+            System.out.println("Sentiment: Neutral");
+        }
+    }
+
+    // Method to check if the input string contains positive keywords
+    private static boolean containsPositiveKeywords(String input) {
+        String[] positiveKeywords = {"happy", "good", "great", "awesome", "excellent"};
+        for (String keyword : positiveKeywords) {
+            if (input.contains(keyword)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Method to check if the input string contains negative keywords
+    private static boolean containsNegativeKeywords(String input) {
+        String[] negativeKeywords = {"sad", "bad", "terrible", "awful", "horrible"};
+        for (String keyword : negativeKeywords) {
+            if (input.contains(keyword)) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
